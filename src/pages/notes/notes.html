@@ -4,49 +4,95 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{ title }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only
+                (click)="initNewNote()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-card *ngIf="new_note">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed for="new-title">Title</ion-label>
+        <ion-input id="new-title" 
+                   type="text" 
+                   required="true"
+                   [(ngModel)]="new_note.title">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed for="new-content">Content</ion-label>
+        <ion-textarea id="new-content" 
+                   required="true"
+                   [(ngModel)]="new_note.content">
+        </ion-textarea>
+      </ion-item>
+      <ion-item>
+      <ion-label fixed for="new-category">Category</ion-label>
+        <ion-select id="new-category" [(ngModel)]="new_note.category">
+          <ion-option *ngFor="let category of categories" [value]="category">
+          {{ category.name }}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <button ion-button (click)="newNote(new_note)">
+          Validate
+        </button>
+        <button ion-button color="light" (click)="deleteNewNote()">
+          Close
+        </button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
   <ion-card *ngFor="let note of notes; let i = index;">
     <div *ngIf="note_edited != i">
-    <ion-card-header>
-      <strong *ngIf="note_edited != i">
-        {{note.title}}
-      </strong>
-      <br/>
-      <span>
+      <ion-card-header>
+        <ion-card-title>
+          {{note.title}}
+        </ion-card-title>
         {{note.category.name}} - {{note.date}}
-      </span>
-    </ion-card-header>
-    <ion-card-content>
-      {{note.content}}
-    </ion-card-content>
-    <button ion-button
-      (click)="note_edited = i"
-      *ngIf="note_edited != i">
-      Modify
-    </button> 
-    <button ion-button color="danger"
-      (click)="deleteNote(note, i)">
-      Delete
-    </button> 
+      </ion-card-header>
+      <ion-card-content>
+        {{note.content}}
+      </ion-card-content>
+      <ion-card-content>
+        <button ion-button
+          (click)="note_edited = i"
+          *ngIf="note_edited != i">
+          Modify
+        </button> 
+        <button ion-button color="danger"
+                           (click)="deleteNote(note, i)">
+          Delete
+        </button> 
+      </ion-card-content>
     </div>
 
     <!-- Note form -->
-    <div class="pannel form"
-         *ngIf="note_edited == i">
+    <ion-list *ngIf="note_edited == i">
+      <ion-item>
         <ion-label fixed for="title">Title</ion-label>
         <ion-input id="title" 
                type="text" 
                required="true"
                [(ngModel)]="note.title">
         </ion-input>
+      </ion-item>
+      <ion-item>
         <ion-label for="content">Content</ion-label>
-        <ion-input id="content" 
+        <ion-textarea id="content" 
                   required="true"
                   [(ngModel)]="note.content">
-        </ion-input>
+        </ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label for="category">Category</ion-label>
         <ion-select [(ngModel)]="note.category">
           <ion-option *ngFor="let category of categories"
                   [value]="category"
@@ -55,13 +101,15 @@
           {{ note.category.id == category.id }}
           </ion-option>
         </ion-select>
-      <button ion-button (click)="updateNote(note, i)">
-        Validate
-      </button>
-      <button ion-button color="light" (click)="note_edited = -1">
-        Close
-      </button>
-    </div>
-
+      </ion-item>
+      <ion-item>
+        <button ion-button (click)="updateNote(note, i)">
+          Validate
+        </button>
+        <button ion-button color="light" (click)="note_edited = -1">
+          Close
+        </button>
+      </ion-item>
+    </ion-list>
   </ion-card>
 </ion-content>

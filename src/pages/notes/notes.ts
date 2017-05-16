@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { Note } from '../../app/note';
+import { Category } from '../../app/category';
 import { NoteService } from '../../app/note.service';
 import { CategoryService } from '../../app/category.service';
 
@@ -80,6 +81,7 @@ export class NotesPage implements OnInit {
 
   initNewNote() {
     this.new_note = new Note();
+    this.new_note.category = new Category();
   }
 
   deleteNewNote() {
