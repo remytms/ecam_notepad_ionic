@@ -1,18 +1,21 @@
-<!--
-  Generated template for the Notes page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>notes</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ title }}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
+  <ion-card *ngFor="let note of notes">
+    <ion-card-header>
+      {{note.title}}
+    </ion-card-header>
+    <ion-card-content>
+      {{note.content}}
+    </ion-card-content>
+    <button ion-button>Modify</button> 
+    <button ion-button color="danger">Delete</button> 
+  </ion-card>
 </ion-content>
