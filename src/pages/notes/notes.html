@@ -32,7 +32,7 @@
         </ion-textarea>
       </ion-item>
       <ion-item>
-      <ion-label fixed for="new-category">Category</ion-label>
+        <ion-label fixed for="new-category">Category</ion-label>
         <ion-select id="new-category" [(ngModel)]="new_note.category">
           <ion-option *ngFor="let category of categories" [value]="category">
           {{ category.name }}

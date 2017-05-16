@@ -10,6 +10,7 @@ import { CategoryService } from './category.service';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { NotesPage } from '../pages/notes/notes';
+import { CategoriesPage } from '../pages/categories/categories';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,6 +21,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     NotesPage,
+    CategoriesPage,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     NotesPage,
+    CategoriesPage,
   ],
   providers: [
     NoteService,
