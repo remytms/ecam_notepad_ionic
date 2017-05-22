@@ -7,8 +7,6 @@ import { NotepadApp } from './app.component';
 import { NoteService } from './note.service';
 import { CategoryService } from './category.service';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { NotesPage } from '../pages/notes/notes';
 import { CategoriesPage } from '../pages/categories/categories';
 
@@ -18,8 +16,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     NotepadApp,
-    HomePage,
-    ListPage,
     NotesPage,
     CategoriesPage,
   ],
@@ -31,8 +27,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     NotepadApp,
-    HomePage,
-    ListPage,
     NotesPage,
     CategoriesPage,
   ],
